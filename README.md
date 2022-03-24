@@ -1,0 +1,1 @@
+# R3S6_Programowanie_Terminali_Mobilnych
