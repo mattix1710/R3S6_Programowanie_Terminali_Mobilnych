@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyCalc</string>
+    <string name="second_number">Second number</string>
+    <string name="first_number">First number</string>
+    <string name="plusSymbol">+</string>
+    <string name="minusSymbol">-</string>
+    <string name="calculate">Calculate</string>
+</resources>
