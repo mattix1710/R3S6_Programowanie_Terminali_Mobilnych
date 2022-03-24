@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             val calcButton: Button = findViewById(R.id.calcButton)
             calcButton.setOnClickListener( this )
+            calcButton.setOnLongClickListener( this )
         }
     }
 
@@ -72,5 +73,56 @@ class MainActivity : AppCompatActivity() {
 
         //update the result TextView
         updateResult(resultStr)
+    }
+
+    override fun onLongClick(p0: View?): Boolean {
+        //Retrieve the numbers from the EditText views. The string from the text attribute
+        //is converted to a floating point value with toFloatOrNull() (this is the same as in the case
+        //of click event)
+        val firstNum =
+            (findViewById<EditText>(R.id.firstNumber).text).toString().toFloatOrNull() ?: 0f
+        val secondNum =
+            (findViewById<EditText>(R.id.secondNumber).text).toString().toFloatOrNull() ?: 0f
+
+        //pass the retrieved numbers to getResult method that returns a string representing the outcome.
+        //In this case we set the updateResult argument to true which means that the current calculation will
+        //take into account the currently displayed result
+        val resultStr: String = getResult(firstNum, secondNum, updateResult = true)
+
+        //update the result TextView
+        updateResult(resultStr)
+        return true
+    }
+
+    private fun getResult(firstNum: Float, secondNum: Float, updateResult: Boolean): String {
+        //If updateResult is true then we save the currently displayed result to a temporary variable
+        //prevResult, otherwise we set the prevResult to be 0 or 1 (in case the operations we are
+        //performing are multiplication or division)
+        val prevResult = if(updateResult){
+            result
+        }else{
+            if(currentOperation.equals("/") || currentOperation.equals("*")) 1f else 0f
+        }
+        //Depending on the currentOperation perform appropriate operation to get the result
+        result = when(currentOperation){
+            "+" -> prevResult + firstNum + secondNum
+            "-" -> {
+                if(prevResult != 0f)
+                    prevResult - (firstNum-secondNum)
+                else{
+                    firstNum - secondNum
+                }
+            }
+            "*" -> prevResult * firstNum * secondNum
+            "/" -> prevResult / firstNum / secondNum
+            else -> 0f
+        }
+
+        return "${getString(R.string.result)} $result" //return the string representation of the result
+    }
+
+    private fun updateResult(resultStr: String) {
+        val resultTextView = findViewById<TextView>(R.id.resultTxtView)     //find the text view
+        resultTextView.text = resultStr     //set the text attribute to the resultStr argument
     }
 }
