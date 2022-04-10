@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RollItTogether</string>
+    <string name="player_1">Player 1</string>
+    <string name="points">0</string>
+    <string name="begin">Rozpocznij</string>
+    <string name="settings">Ustawienia</string>
+    <string name="throwText">Rzut:</string>
+</resources>
