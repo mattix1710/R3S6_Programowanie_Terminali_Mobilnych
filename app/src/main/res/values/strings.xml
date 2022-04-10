@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">RollItTogether</string>
-    <string name="player_1">Player 1</string>
+    <string name="player_1">Gracz 1</string>
+    <string name="player_2">Gracz 2</string>
     <string name="points">0</string>
     <string name="begin">Rozpocznij</string>
-    <string name="settings">Ustawienia</string>
     <string name="throwText">Rzut:</string>
+    <string name="beginDescText">DOMYŚLNIE: GRACZ1 i GRACZ2 rozgrywają do 3 rzutów</string>
+    <string name="roundNum">123452</string>
+    <string name="throwDistributor">/</string>
+    <string name="roundQuantity">30</string>
+    <string name="player1_points">0</string>
+    <string name="player2_points">0</string>
 </resources>
