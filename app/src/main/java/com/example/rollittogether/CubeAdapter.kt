@@ -19,7 +19,7 @@ class CubeAdapter: BaseAdapter {
     }
 
     public override fun getCount(): Int{
-        return 10//mThumbIds.size
+        return mThumbIds.size
     }
 
     public override fun getItem(position: Int): Object? {
