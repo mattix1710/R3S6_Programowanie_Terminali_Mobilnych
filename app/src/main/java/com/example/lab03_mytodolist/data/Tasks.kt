@@ -20,11 +20,11 @@ object Tasks {
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addItem(createPlaceholderItem(i))
+            addTask(createPlaceholderItem(i))
         }
     }
 
-    private fun addItem(item: TaskItem) {
+    fun addTask(item: TaskItem) {
         ITEMS.add(item)
     }
 

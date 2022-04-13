@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">LAB03_MyTODOList</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="importanceLabel">Task importance</string>
+    <string name="low_button">LOW</string>
+    <string name="normal_button">NORMAL</string>
+    <string name="high_button">HIGH</string>
+    <string name="label_task">Enter task details</string>
+    <string name="titleInput">Title</string>
+    <string name="description">Description</string>
+    <string name="default_task_title">Title</string>
+    <string name="no_desc_msg">Description</string>
 </resources>
