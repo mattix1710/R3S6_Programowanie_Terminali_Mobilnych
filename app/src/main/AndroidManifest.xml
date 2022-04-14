@@ -8,9 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RollItTogether">
+        android:theme="@style/Theme.RollItTogether" >
         <activity
             android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

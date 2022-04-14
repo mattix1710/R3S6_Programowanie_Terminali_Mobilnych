@@ -1,19 +1,39 @@
 package com.example.rollittogether
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE)
+
+        var textViewPlayer: TextView = findViewById(R.id.player1)
+        textViewPlayer.setText(sharedPreferences.getString(player1Name, null))
+
+        textViewPlayer = findViewById(R.id.player2)
+        if(sharedPreferences.getString(player2Name, null)?.isBlank() == true)
+            textViewPlayer.setText(R.string.player_2)
+        else
+            textViewPlayer.setText(sharedPreferences.getString(player2Name, null))
+
+        textViewPlayer = findViewById(R.id.throwQuantity)
+        if(sharedPreferences.contains(throwQuantity))
+            textViewPlayer.setText(sharedPreferences.getInt(throwQuantity, 3))
+        else
+            textViewPlayer.setText(R.integer.defaultThrowCount.toInt())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,5 +63,13 @@ class MainActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, SettingsActivity::class.java)
 
         launchSettingsActivity.launch(intent)
+    }
+
+    companion object {          //setting constant val used globally
+        const val MyPREFERENCES = "saveFile"
+        const val player1Name = "player1NameKey"
+        const val player2Name = "player2NameKey"
+        const val throwQuantity = "throwQuantityKey"
+        const val cubeQuantity = "cubeQuantityKey"
     }
 }

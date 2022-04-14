@@ -11,4 +11,9 @@
     <string name="roundQuantity">30</string>
     <string name="player1_points">0</string>
     <string name="player2_points">0</string>
+    <string name="player1Display">Gracz 1</string>
+    <string name="player2Display">Gracz 2</string>
+    <string name="throwCountDisplay">Ilość rzutów (3-10)</string>
+    <string name="cubeCountDisplay">Ilość kości (2-10)</string>
+    <string name="savePreferences">saveFile</string>
 </resources>

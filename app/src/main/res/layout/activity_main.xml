@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="67dp" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <RelativeLayout
         android:id="@+id/playersLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="10dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopUp"
         app:layout_constraintEnd_toEndOf="@id/guidelineMiddleVertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,12 @@
             android:id="@+id/leftPlayerLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:gravity="center_horizontal"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -47,9 +51,9 @@
                 android:id="@+id/player1_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/player1"
                 android:text="@string/player1_points"
-                android:textSize="14sp"
-                android:layout_below="@id/player1"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -57,10 +61,13 @@
             android:id="@+id/rightPlayerLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@id/leftPlayerLayout"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -99,14 +106,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="0dp"
+            android:gravity="center"
             android:text="@string/throwText" />
 
         <TextView
-            android:id="@+id/roundNum"
+            android:id="@+id/throwNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -127,12 +134,12 @@
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@id/roundNum"
+            android:layout_toRightOf="@id/throwNum"
             android:gravity="center"
             android:text="@string/throwDistributor" />
 
         <TextView
-            android:id="@+id/roundQuantity"
+            android:id="@+id/throwQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -146,13 +153,12 @@
     </RelativeLayout>
 
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="423dp" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <TextView
         android:id="@+id/estPoints"
@@ -203,6 +209,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="111dp" />
+        app:layout_constraintGuide_percent="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
