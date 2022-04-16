@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/defaultSettings"
+        android:title="@string/defaultSettings"/>
+    <item
         android:id="@+id/settingsItem"
-        android:title="Settings" />
+        android:title="@string/settings" />
 </menu>

@@ -4,16 +4,19 @@
     <string name="player_2">Gracz 2</string>
     <string name="points">0</string>
     <string name="begin">Rozpocznij</string>
-    <string name="throwText">Rzut:</string>
+    <string name="end">Zakończ</string>
+    <string name="throwText">Pozostało rzutów: </string>
     <string name="beginDescText">DOMYŚLNIE: GRACZ1 i GRACZ2 rozgrywają do 3 rzutów</string>
-    <string name="roundNum">123452</string>
+    <string name="roundNum">1</string>
     <string name="throwDistributor">/</string>
-    <string name="roundQuantity">30</string>
+    <string name="roundQuantity">3</string>
     <string name="player1_points">0</string>
     <string name="player2_points">0</string>
-    <string name="player1Display">Gracz 1</string>
-    <string name="player2Display">Gracz 2</string>
     <string name="throwCountDisplay">Ilość rzutów (3-10)</string>
     <string name="cubeCountDisplay">Ilość kości (2-10)</string>
     <string name="savePreferences">saveFile</string>
+    <string name="defaultSettings">Przywróć domyślne</string>
+    <string name="settings">Ustawienia</string>
+    <string name="winner">%1$s wygrywa!</string>
+    <string name="repeat">Rewanż?</string>
 </resources>

@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_alfa_0x45">#45808080</color>
+    <color name="diceBackgroundColour">#000</color>
+    <color name="selectedDice">#454CAF50</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="normalDice">#4CAF50</color>
 </resources>

@@ -8,13 +8,21 @@
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1975" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/border.xml" value="0.1975" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/border_inactive.xml" value="0.1245" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_1.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_2.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_3.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_4.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_5.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_6.xml" value="0.2315" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/dice_unknown.xml" value="0.2315" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1245" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/menu.xml" value="0.122" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/drawable/row_item.xml" value="0.3635" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/layout-land/activity_settings.xml" value="0.30687830687830686" />
-        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/layout/activity_main.xml" value="0.35" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/layout/activity_main.xml" value="0.20512820512820512" />
         <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/layout/activity_settings.xml" value="0.20512820512820512" />
-        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/menu/menu.xml" value="0.29743589743589743" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/layout/single_dice.xml" value="0.1" />
+        <entry key="..\:/Users/MATI/StudioProjects/R3S6_Programowanie_Terminali_Mobilnych-RollItTogether/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
   </component>

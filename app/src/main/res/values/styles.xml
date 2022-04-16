@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DiceTheme">
+        <item name="diceColour">@color/normalDice</item>
+    </style>
+    <style name="DiceTheme.Selected">
+        <item name="diceColour">@color/selectedDice</item>
+    </style>
+</resources>

@@ -19,34 +19,33 @@
         android:id="@+id/cubeCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:textSize="20sp"
         android:text="@string/cubeCountDisplay"
-        app:layout_constraintTop_toBottomOf="@id/throwCount"
-        app:layout_constraintEnd_toStartOf="@+id/verticalMain" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editCubeCount"
+        app:layout_constraintEnd_toStartOf="@+id/verticalMain"
+        app:layout_constraintTop_toBottomOf="@+id/editThrowCount" />
 
     <TextView
         android:id="@+id/player1Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
+        android:text="@string/player_1"
         android:textSize="20sp"
-        android:text="@string/player1Display"
         app:layout_constraintEnd_toStartOf="@+id/verticalMain"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/horizontalUp" />
 
     <TextView
         android:id="@+id/throwCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:textSize="20sp"
         android:text="@string/throwCountDisplay"
-        app:layout_constraintTop_toBottomOf="@id/player2Name"
-        app:layout_constraintEnd_toStartOf="@+id/verticalMain" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editThrowCount"
+        app:layout_constraintEnd_toStartOf="@+id/verticalMain"
+        app:layout_constraintTop_toBottomOf="@+id/editPlayer2Name" />
 
     <TextView
         android:id="@+id/player2Name"
@@ -55,17 +54,18 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:textSize="20sp"
-        android:text="@string/player2Display"
+        android:text="@string/player_2"
         app:layout_constraintTop_toBottomOf="@id/player1Name"
         app:layout_constraintEnd_toEndOf="@id/verticalMain"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontalMain"
+        android:id="@+id/horizontalDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.8" />
 
+    <!--
     <GridView
         android:id="@+id/cubePreview"
         android:layout_width="391dp"
@@ -76,6 +76,7 @@
         app:layout_constraintTop_toTopOf="@+id/horizontalMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    -->
 
     <EditText
         android:id="@+id/editPlayer1Name"
@@ -109,6 +110,7 @@
         app:layout_constraintStart_toStartOf="@+id/verticalMain"
         app:layout_constraintTop_toTopOf="@+id/player2Name" />
 
+    <!--
     <EditText
         android:id="@+id/editThrowCount"
         android:layout_width="0dp"
@@ -124,7 +126,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/verticalMain"
         app:layout_constraintTop_toTopOf="@+id/throwCount" />
+        -->
 
+    <NumberPicker
+        android:id="@+id/editThrowCount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toTopOf="@id/editCubeCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/verticalMain"
+        app:layout_constraintTop_toBottomOf="@id/player2Name"
+        />
+
+    <!--
     <EditText
         android:id="@+id/editCubeCount"
         android:layout_width="0dp"
@@ -140,5 +158,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/verticalMain"
         app:layout_constraintTop_toTopOf="@+id/cubeCount" />
+        -->
+
+    <NumberPicker
+        android:id="@+id/editCubeCount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toTopOf="@id/horizontalDown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/verticalMain"
+        app:layout_constraintTop_toBottomOf="@id/editThrowCount"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

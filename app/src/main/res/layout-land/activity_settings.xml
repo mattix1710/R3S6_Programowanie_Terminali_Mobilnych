@@ -43,7 +43,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="84dp"
         android:text="Ilość kości"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalMain"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalDown"
         app:layout_constraintEnd_toStartOf="@+id/verticalMain"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.804" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontalMain"
+        android:id="@+id/horizontalDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
