@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.GridLayout
 import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ class DicesViewAdapter(
         if(item is DiceImpl){
             item.viewHolder = holder
         }
+
 
         holder.itemView.setOnClickListener{
             if(item.getValue() != 0){

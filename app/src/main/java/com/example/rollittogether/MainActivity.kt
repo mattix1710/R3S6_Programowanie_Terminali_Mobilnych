@@ -72,11 +72,18 @@ class MainActivity : AppCompatActivity(),
         remainingRolls = RemainingRollsImpl(throwQuantity, sharedPreferences)
         fab = findViewById(R.id.fab)
 
+
+        //calculate current dice layout
+        //if <= 6: spanCount: 2
+        var spanCount: Int = 2
+        if(sharedPreferences.getInt(cubeQuantity, 2) > 6)
+            spanCount = 3
+
         dice_list.let{
             //it.layoutManager = LinearLayoutManager(it.context, LinearLayoutManager.HORIZONTAL, false)
             it.adapter = DicesViewAdapter(diceGroup.dices, this)
-            it.layoutManager = GridLayoutManager(it.context, 3, GridLayoutManager.VERTICAL, false)
-            //it.layoutManager
+            it.layoutManager = GridLayoutManager(it.context, spanCount, GridLayoutManager.VERTICAL, false)
+        //it.layoutManager
         }
 
         fab.setOnClickListener{
@@ -89,52 +96,15 @@ class MainActivity : AppCompatActivity(),
             beginDescription.visibility = View.GONE
             end.visibility = View.VISIBLE
 
-            player1.text = sharedPreferences.getString(player1Name, null)
-                ?.let { it1 -> setBold(it1) }
+            estPoints.text = getString(R.string.points)
+
+            if(currentPlayer == PLAYER.PLAYER_1.ordinal)
+                player1.text = sharedPreferences.getString(player1Name, null)
+                    ?.let { it1 -> setBold(it1) }
         }
 
         end.setOnClickListener(){
-            val editor: SharedPreferences.Editor = sharedPreferences.edit ()
-            if(currentPlayer == PLAYER.PLAYER_1.ordinal){
-                editor.putInt(player1Score, auxSum)
-                editor.apply()
-                player1_points.text = auxSum.toString()
-                player1.text = sharedPreferences.getString(player1Name, null)
-                    ?.let { it1 -> setNormal(it1) }
-                currentPlayer = PLAYER.PLAYER_2.ordinal
-                player2.text = sharedPreferences.getString(player2Name, null)
-                    ?.let { it1 -> setBold(it1) }
-
-                restoreCubes()
-            }
-            else {
-                editor.putInt(player2Score, auxSum)
-                editor.apply()
-                player2_points.text = auxSum.toString()
-
-
-                estPoints.visibility = View.INVISIBLE
-                dice_list.visibility = View.INVISIBLE
-
-                var p1 = sharedPreferences.getInt(player1Score, 0)
-                var p2 = sharedPreferences.getInt(player2Score, 0)
-                val win: TextView = findViewById(R.id.winner)
-
-                if (p1 > p2)
-                    win.text =
-                        getString(R.string.winner, sharedPreferences.getString(player1Name, null))
-                else if (p2 > p1)
-                    win.text =
-                        getString(R.string.winner, sharedPreferences.getString(player2Name, null))
-                else
-                    win.text = "Remis!" as CharSequence
-
-
-                win.visibility = View.VISIBLE
-                end.visibility = View.GONE
-                repeat.visibility = View.VISIBLE
-                fab.visibility = View.INVISIBLE
-            }
+            endRound()
         }
 
         repeat.setOnClickListener(){
@@ -144,7 +114,7 @@ class MainActivity : AppCompatActivity(),
             winner.visibility = View.GONE
             estPoints.visibility = View.VISIBLE
             dice_list.visibility = View.VISIBLE
-            fab.visibility = View.VISIBLE
+            fab.visibility = View.INVISIBLE
             repeat.visibility = View.GONE
 
             player1.text = sharedPreferences.getString(player1Name, null)
@@ -241,7 +211,7 @@ class MainActivity : AppCompatActivity(),
                     Log.i("currSum", auxSum.toString())
                 }
                 dispCurrentSum()
-                if(remainingRolls.canRoll()) fab.show() else end
+                if(remainingRolls.canRoll()) fab.show() else endRound()
             }
         }
     }
@@ -265,6 +235,54 @@ class MainActivity : AppCompatActivity(),
         }
 
         override fun canRoll() = counter > 0
+    }
+
+    fun endRound(){
+        val editor: SharedPreferences.Editor = sharedPreferences.edit ()
+        if(currentPlayer == PLAYER.PLAYER_1.ordinal){
+            editor.putInt(player1Score, auxSum)
+            editor.apply()
+            player1_points.text = auxSum.toString()
+            player1.text = sharedPreferences.getString(player1Name, null)
+                ?.let { it1 -> setNormal(it1) }
+            currentPlayer = PLAYER.PLAYER_2.ordinal
+            player2.text = sharedPreferences.getString(player2Name, null)
+                ?.let { it1 -> setBold(it1) }
+
+            fab.visibility = View.INVISIBLE
+            begin.visibility = View.VISIBLE
+            end.visibility = View.GONE
+
+            restoreCubes()
+        }
+        else {
+            editor.putInt(player2Score, auxSum)
+            editor.apply()
+            player2_points.text = auxSum.toString()
+
+
+            estPoints.visibility = View.INVISIBLE
+            dice_list.visibility = View.INVISIBLE
+
+            var p1 = sharedPreferences.getInt(player1Score, 0)
+            var p2 = sharedPreferences.getInt(player2Score, 0)
+            val win: TextView = findViewById(R.id.winner)
+
+            if (p1 > p2)
+                win.text =
+                    getString(R.string.winner, sharedPreferences.getString(player1Name, null))
+            else if (p2 > p1)
+                win.text =
+                    getString(R.string.winner, sharedPreferences.getString(player2Name, null))
+            else
+                win.text = "Remis!" as CharSequence
+
+
+            win.visibility = View.VISIBLE
+            end.visibility = View.GONE
+            repeat.visibility = View.VISIBLE
+            fab.visibility = View.INVISIBLE
+        }
     }
 }
 
