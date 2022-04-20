@@ -2,6 +2,7 @@ package com.example.lab03_mytodolist
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,7 +16,8 @@ import com.example.lab03_mytodolist.databinding.FragmentItemBinding
  * TODO: Replace the implementation with code for your data type.
  */
 class MyItemRecyclerViewAdapter(
-    private val values: List<TaskItem>
+    private val values: List<TaskItem>,
+    private val eventListener: ToDoListListener
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,6 +39,13 @@ class MyItemRecyclerViewAdapter(
         }
         holder.imgView.setImageResource(resource)
         holder.contentView.text = item.title
+        holder.itemContainer.setOnClickListener{
+            eventListener.onItemClick(position)
+        }
+        holder.itemContainer.setOnLongClickListener{
+            eventListener.onItemLongClick(position)
+            return@setOnLongClickListener true
+        }
     }
 
     override fun getItemCount(): Int = values.size

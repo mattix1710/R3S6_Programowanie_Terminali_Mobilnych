@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.lab03_mytodolist.data.IMPORTANCE
 import com.example.lab03_mytodolist.data.TaskItem
 import com.example.lab03_mytodolist.data.Tasks
@@ -23,6 +25,7 @@ import com.example.lab03_mytodolist.databinding.FragmentAddTaskBinding
  * create an instance of this fragment.
  */
 class AddTaskFragment : Fragment() {
+    val args: AddTaskFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentAddTaskBinding
 
@@ -38,6 +41,14 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.saveButton.setOnClickListener{saveTask()}
+        binding.titleInput.setText(args.taskToEdit?.title)
+        binding.descriptionInput.setText(args.taskToEdit?.description)
+        when(args.taskToEdit?.importance){
+            IMPORTANCE.LOW -> binding.importanceGroup.check(R.id.low_radioButton)
+            IMPORTANCE.NORMAL -> binding.importanceGroup.check(R.id.normal_radioButton)
+            IMPORTANCE.HIGH -> binding.importanceGroup.check(R.id.high_radioButton)
+            null -> binding.importanceGroup.check(R.id.normal_radioButton)
+        }
     }
 
     private fun saveTask(){
@@ -61,11 +72,18 @@ class AddTaskFragment : Fragment() {
             description,
             importance
         )
-        //Add the new item to Tasks list
-        Tasks.addTask(taskItem)
+        if(!args.edit) {
+            //Add the new item to Tasks list
+            Tasks.addTask(taskItem)
+        }else{
+            //Update existing item in Tasks list
+            Tasks.updateTask(args.taskToEdit, taskItem)
+        }
 
         //Hide the software keyboard with InputMethodManager
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
+
+        findNavController().popBackStack(R.id.itemFragment, false)
     }
 }

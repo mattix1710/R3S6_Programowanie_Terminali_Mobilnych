@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/activity_main.xml" value="0.1947463768115942" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_add_task.xml" value="0.25" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_display_task.xml" value="0.3625" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_item.xml" value="0.3625" />
-        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_item_list.xml" value="0.3625" />
+        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_item_list.xml" value="0.18614130434782608" />
       </map>
     </option>
   </component>

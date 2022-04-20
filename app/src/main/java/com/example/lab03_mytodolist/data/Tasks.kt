@@ -40,6 +40,18 @@ object Tasks {
         }
         return builder.toString()
     }
+
+    fun updateTask(taskToEdit: TaskItem?, newTask: TaskItem) {
+        taskToEdit?.let { oldTask ->
+            //Perform this operations only when taskToEdit is not null
+            //Find the index of old task
+            val indexOfOldTask = ITEMS.indexOf(oldTask)
+            //place new task in place of oldTask
+            ITEMS.add(indexOfOldTask, newTask)
+            //Remove the oldTask that was moved to the next position in the ITEMS list
+            ITEMS.removeAt(indexOfOldTask+1)
+        }
+    }
 }
 
 data class TaskItem(val id: String, val title: String, val description: String, val importance: IMPORTANCE = IMPORTANCE.NORMAL): Parcelable {
