@@ -15,6 +15,7 @@ object Tasks {
      */
     val ITEMS: MutableList<TaskItem> = ArrayList()
 
+    //set initial number of task created
     private val COUNT = 10
 
     init {

@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/drawable/circle_drawable_green.xml" value="0.2555" />
+        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/drawable/circle_drawable_orange.xml" value="0.2555" />
+        <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/drawable/circle_drawable_red.xml" value="0.2555" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/activity_main.xml" value="0.1947463768115942" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_add_task.xml" value="0.25" />
         <entry key="..\:/Users/MATI/AndroidStudioProjects/LAB03_MyTODOList/app/src/main/res/layout/fragment_display_task.xml" value="0.3625" />

@@ -12,11 +12,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.lab03_mytodolist.data.Tasks
 import com.example.lab03_mytodolist.databinding.FragmentItemListBinding
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * A fragment representing a list of Items.
  */
-class ItemFragment : Fragment(), ToDoListListener {
+class ItemFragment : Fragment(), ToDoListListener,
+    DeleteDialogFragment.OnDeleteDialogInteractionListener {
     private lateinit var binding: FragmentItemListBinding
 
     override fun onCreateView(
@@ -54,8 +56,30 @@ class ItemFragment : Fragment(), ToDoListListener {
     }
 
     override fun onItemLongClick(position: Int) {
-        //TODO("Not yet implemented")
+        showDeleteDialog(position)
     }
 
+    private fun showDeleteDialog(position: Int){
+        val deleteDialog = DeleteDialogFragment.newInstance(Tasks.ITEMS.get(position).title, position, this)
+        deleteDialog.show(requireActivity().supportFragmentManager, "DeleteDialog")
+    }
+
+    override fun onDialogPositiveClick(pos: Int?) {
+        Tasks.ITEMS.removeAt(pos!!)
+        Snackbar.make(requireView(), "Task deleted", Snackbar.LENGTH_LONG)
+            .show()
+        notifyDataSetChanged()
+    }
+
+    override fun onDialogNegativeClick(pos: Int?) {
+        Snackbar.make(requireView(), "Delete cancelled", Snackbar.LENGTH_LONG)
+            .setAction("Redo", View.OnClickListener { showDeleteDialog(pos!!) })
+            .show()
+    }
+
+    private fun notifyDataSetChanged(){
+        val rvAdapter = binding.list.adapter
+        rvAdapter?.notifyDataSetChanged()
+    }
 
 }
