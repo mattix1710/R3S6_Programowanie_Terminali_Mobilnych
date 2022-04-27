@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LAB03_HW2_MyContactList</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_task_details">Wprowadź dane kontaktowe</string>
+    <string name="birthday_hint">Data urodzenia</string>
+    <string name="phone_hint">Telefon</string>
+    <string name="name_hint">Nazwa</string>
+    <string name="default_name">Jan Kowalski</string>
+    <string name="default_phone">(+48) 123 456 789</string>
+    <string name="default_birthday">01/01/1990</string>
 </resources>
