@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.lab03_hw2_mycontactlist.data.ContactItem
 import com.example.lab03_hw2_mycontactlist.data.Contacts
 import com.example.lab03_hw2_mycontactlist.databinding.FragmentAddContactBinding
@@ -22,6 +24,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AddContactFragment : Fragment() {
+    val args: AddContactFragmentArgs by navArgs()
+
     private lateinit var binding: FragmentAddContactBinding
 
     override fun onCreateView(
@@ -36,6 +40,9 @@ class AddContactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.saveButton.setOnClickListener{ saveContact() }
+        binding.nameInput.setText(args.contactToEdit?.name)
+        binding.dateInput.setText(args.contactToEdit?.birthday)
+        binding.phoneInput.setText(args.contactToEdit?.phoneNumber)
     }
 
     private fun saveContact() {
@@ -56,11 +63,20 @@ class AddContactFragment : Fragment() {
             birthday,
             phone
         )
-        //Add the new item to Contacts list
-        Contacts.addContact(contactItem)
+
+        if(!args.edit) {
+            //Add the new item to Contacts list
+            Contacts.addContact(contactItem)
+        }else{
+            Contacts.updateContact(args.contactToEdit, contactItem)
+        }
 
         //Hide the software keyboard with InputMethodManager
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
+
+        //Use "popBackStack" in order to be able to go back to a given fragment in the back stack
+        //We then specify the id of the fragment we want to navigate to...
+        findNavController().popBackStack(R.id.contactFragment, false)
     }
 }

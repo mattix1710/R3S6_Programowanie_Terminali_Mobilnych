@@ -23,7 +23,7 @@ object Contacts {
      */
     val ITEM_MAP: MutableMap<String, ContactItem> = HashMap()
 
-    private val COUNT = 10
+    private val COUNT = 5
 
     init {
         // Add some sample items.
@@ -37,7 +37,41 @@ object Contacts {
     }
 
     private fun createPlaceholderItem(position: Int): ContactItem {
-        return ContactItem(position.toString(), "Name " + position, makeDetails(position))  //makeDetails - returns to Birthday; NOTHING FOR phoneNumber
+        return ContactItem(position.toString(), makeName(position), makeBirthday(position), makePhoneNumber(position))  //makeDetails - returns to Birthday; NOTHING FOR phoneNumber
+    }
+
+    private fun makePhoneNumber(position: Int): String {
+        var aux: String = "(+48) "
+        for(i in 0 until position){
+            aux += position.toString()
+        }
+        return aux
+    }
+
+    private fun makeBirthday(position: Int): String {
+        var auxDayMonth: Int = 1
+        var auxYear: Int = 1990
+        var str: String = (auxDayMonth*position).toString().padStart(2, '0') + "/" +
+                          (auxDayMonth*position).toString().padStart(2, '0') + "/" +
+                          (auxYear+position).toString()
+        return str
+    }
+
+    private fun makeName(position: Int): String {
+        val bigLetter = 65
+        val smallLetter = 97
+        var str: String = (bigLetter+position-1).toChar().toString()
+
+        for(i in 0 until position-1){
+            str += (smallLetter+position-1).toChar().toString()
+        }
+
+        str += " "  + (bigLetter+position).toChar().toString()
+        for(i in 0 until position-1){
+            str += (smallLetter+position).toChar().toString()
+        }
+
+        return str
     }
 
     private fun makeDetails(position: Int): String {
@@ -47,6 +81,19 @@ object Contacts {
             builder.append("\nMore details information here.")
         }
         return builder.toString()
+    }
+
+    fun updateContact(contactToEdit: ContactItem?, newContact: ContactItem) {
+        contactToEdit?.let {
+            oldContact ->
+            //Perform this operations only when contactToEdit is not null
+            //Find the index of old contact
+            val indexOfOldContact = ITEMS.indexOf(oldContact)
+            //Place new contact in place of oldContact
+            ITEMS.add(indexOfOldContact, newContact)
+            //Remove the oldContact that was moved to the next position in the ITEMS list
+            ITEMS.removeAt(indexOfOldContact+1)
+        }
     }
 
     /**

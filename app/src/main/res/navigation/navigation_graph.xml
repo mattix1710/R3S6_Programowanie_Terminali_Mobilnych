@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/contactFragment">
+
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.lab03_hw2_mycontactlist.ContactFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" >
+        <action
+            android:id="@+id/action_contactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_displayContactFragment"
+            app:destination="@id/displayContactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="com.example.lab03_hw2_mycontactlist.AddContactFragment"
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact" >
+        <argument
+            android:name="contactToEdit"
+            app:argType="com.example.lab03_hw2_mycontactlist.data.ContactItem"
+            app:nullable="true" />
+        <argument
+            android:name="edit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayContactFragment"
+        android:name="com.example.lab03_hw2_mycontactlist.DisplayContactFragment"
+        tools:layout="@layout/fragment_display_contact"
+        android:label="DisplayContactFragment" >
+        <argument
+            android:name="contact"
+            app:argType="com.example.lab03_hw2_mycontactlist.data.ContactItem" />
+        <action
+            android:id="@+id/action_displayContactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+    </fragment>
+</navigation>
