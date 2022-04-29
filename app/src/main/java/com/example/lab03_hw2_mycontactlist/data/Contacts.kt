@@ -2,8 +2,20 @@ package com.example.lab03_hw2_mycontactlist.data
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.ArrayList
-import java.util.HashMap
+import android.util.Log
+import com.example.lab03_hw2_mycontactlist.R
+import java.util.*
+import java.util.concurrent.ThreadLocalRandom
+
+fun makeImage(): Int {
+    val images = arrayOf<Int>(
+        R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
+        R.drawable.avatar_7, R.drawable.avatar_8, R.drawable.avatar_9, R.drawable.avatar_10, R.drawable.avatar_11, R.drawable.avatar_12,
+        R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
+
+    val rand = ThreadLocalRandom.current()
+    return images[rand.nextInt(images.size)]
+}
 
 /**
  * Helper class for providing sample firstName for user interfaces created by
@@ -25,6 +37,10 @@ object Contacts {
 
     private val COUNT = 5
 
+    fun getCount(): Int {
+        return COUNT
+    }
+
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
@@ -37,7 +53,7 @@ object Contacts {
     }
 
     private fun createPlaceholderItem(position: Int): ContactItem {
-        return ContactItem(position.toString(), makeName(position), makeBirthday(position), makePhoneNumber(position))  //makeDetails - returns to Birthday; NOTHING FOR phoneNumber
+        return ContactItem(position.toString(), makeName(position), makeBirthday(position), makePhoneNumber(position), makeImage())  //makeDetails - returns to Birthday; NOTHING FOR phoneNumber
     }
 
     private fun makePhoneNumber(position: Int): String {
@@ -102,12 +118,13 @@ object Contacts {
 
 }
 
-data class ContactItem(val id: String, val name: String, val birthday: String, val phoneNumber: String): Parcelable {
+data class ContactItem(val id: String, val name: String, val birthday: String, val phoneNumber: String, val imgId: Int): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readInt()!!
     ) {
     }
 
@@ -117,6 +134,7 @@ data class ContactItem(val id: String, val name: String, val birthday: String, v
         parcel.writeString(name)
         parcel.writeString(birthday)
         parcel.writeString(phoneNumber)
+        parcel.writeInt(imgId)
     }
 
     override fun describeContents(): Int {

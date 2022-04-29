@@ -25,7 +25,8 @@
         <argument
             android:name="contactToEdit"
             app:argType="com.example.lab03_hw2_mycontactlist.data.ContactItem"
-            app:nullable="true" />
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="edit"
             app:argType="boolean"

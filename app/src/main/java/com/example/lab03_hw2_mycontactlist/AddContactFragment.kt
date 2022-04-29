@@ -7,16 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.lab03_hw2_mycontactlist.data.ContactItem
 import com.example.lab03_hw2_mycontactlist.data.Contacts
+import com.example.lab03_hw2_mycontactlist.data.makeImage
 import com.example.lab03_hw2_mycontactlist.databinding.FragmentAddContactBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -43,6 +41,25 @@ class AddContactFragment : Fragment() {
         binding.nameInput.setText(args.contactToEdit?.name)
         binding.dateInput.setText(args.contactToEdit?.birthday)
         binding.phoneInput.setText(args.contactToEdit?.phoneNumber)
+        /**
+         * ?. - null safety operator
+         * Check if imgId is NULL, if yes - draw a new image from 16 possible
+         * Otherwise - display already saved image
+        */
+        binding.contactImageIn.setImageResource(args.contactToEdit?.imgId.let { makeImage() })
+
+        //if image was clicked - randomize new image
+        val imgChange: ImageView = binding.contactImageIn
+        imgChange.setOnClickListener { binding.contactImageIn.setImageResource(makeImage()) }
+
+
+        //display different prompt whether the contact is new or already exists
+        val promptText: TextView = binding.root.findViewById(R.id.label)
+        if(args.edit)
+            promptText.text = R.string.enter_contact_details_existing.toString()
+        else
+            promptText.text = R.string.enter_contact_details_new.toString()
+
     }
 
     private fun saveContact() {
@@ -50,6 +67,7 @@ class AddContactFragment : Fragment() {
         var name: String = binding.nameInput.text.toString()
         var phone: String = binding.phoneInput.text.toString()
         var birthday: String = binding.dateInput.text.toString()
+        var imgId: Int = binding.contactImageIn.id
 
         //Handle missing EditText input
         if(name.isEmpty()) name = "Jan Kowalski"
@@ -61,7 +79,8 @@ class AddContactFragment : Fragment() {
             {name + phone}.hashCode().toString(),
             name,
             birthday,
-            phone
+            phone,
+            imgId
         )
 
         if(!args.edit) {

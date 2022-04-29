@@ -4,6 +4,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.lab03_hw2_mycontactlist.data.ContactItem
@@ -30,10 +32,7 @@ class MyContactRecyclerViewAdapter(
                 false
             )
         )
-
     }
-
-
 
     /**
     * Responsible for fetching data for "ViewHolders" at given position in the list;
@@ -43,17 +42,23 @@ class MyContactRecyclerViewAdapter(
         val item = values[position]
 
         //randomize choosen avatar - will RANDOMIZE all contact images each time while opening list tab
-        var images = arrayOf<Int>(R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
-        //or: intArrayOf(...)
-                                  R.drawable.avatar_7, R.drawable.avatar_8, R.drawable.avatar_9, R.drawable.avatar_10, R.drawable.avatar_11, R.drawable.avatar_12,
-                                  R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
-        val rand = ThreadLocalRandom.current()
-        holder.imgView.setImageResource(images[rand.nextInt(images.size)])
+
+//        val images = arrayOf<Int>(R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
+//            //or: intArrayOf(...)
+//            R.drawable.avatar_7, R.drawable.avatar_8, R.drawable.avatar_9, R.drawable.avatar_10, R.drawable.avatar_11, R.drawable.avatar_12,
+//            R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
+//        val rand = ThreadLocalRandom.current()
+
+        holder.imgView.setImageResource(item.imgId)
         holder.contentView.text = item.name
 
         holder.contactContainer.setOnClickListener{
             eventListener.onContactClick(position)
         }
+
+        //set View of an ImageButton - deleting contact
+        val button: ImageButton = holder.contactContainer.findViewById(R.id.deleteButton)
+        button.setOnClickListener { eventListener.onDeleteButtonClick(position) }
 
         holder.contactContainer.setOnLongClickListener{
             eventListener.onContactLongClick(position)
