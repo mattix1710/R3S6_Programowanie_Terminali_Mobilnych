@@ -22,7 +22,8 @@ import org.w3c.dom.Text
  * A fragment representing a list of Contacts.
  */
 class ContactFragment : Fragment(), ContactListListener,
-    DeleteDialogFragment.OnDeleteDialogInteractionListener {
+    DeleteDialogFragment.OnDeleteDialogInteractionListener,
+    CallDialogFragment.OnCallDialogInteractionListener {
     private lateinit var binding: FragmentContactListBinding
 
     override fun onCreateView(
@@ -47,15 +48,37 @@ class ContactFragment : Fragment(), ContactListListener,
         findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
     }
 
-    override fun onContactClick(position: Int) {
+    override fun onContactLongClick(position: Int) {
         // TODO: Make a call...
         // IDEA: zrobić tak samo / podobnie jak Delete (powiadomienie i upewnienie się, czy chce się zadzwonić)
+        showCallDialog(position)
     }
 
-    override fun onContactLongClick(position: Int) {
+    override fun onContactClick(position: Int) {
         val actionContactFragmentToDisplayContactFragment =
             ContactFragmentDirections.actionContactFragmentToDisplayContactFragment(Contacts.ITEMS.get(position))
         findNavController().navigate(actionContactFragmentToDisplayContactFragment)
+    }
+
+    /**
+     * PROCEEDING A CALL FUNCTIONS...
+     */
+
+    private fun showCallDialog(position: Int){
+        val callDialog = CallDialogFragment.newInstance(position, Contacts.ITEMS.get(position).phoneNumber, this)
+        callDialog.show(requireActivity().supportFragmentManager, "CallDialog")
+    }
+
+    override fun onCallPositiveClick(num: String?) {
+        //TODO("Not yet implemented")
+
+        Snackbar.make(requireView(), "Połączenie trwa...", Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onCallNegativeClick(pos: Int?) {
+        Snackbar.make(requireView(), "Połączenie anulowane", Snackbar.LENGTH_LONG)
+            .setAction("Powtórzyć?", View.OnClickListener { showCallDialog(pos!!) })
+            .show()
     }
 
 

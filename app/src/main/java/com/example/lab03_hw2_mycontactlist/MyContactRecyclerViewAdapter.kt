@@ -1,5 +1,6 @@
 package com.example.lab03_hw2_mycontactlist
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,8 @@ class MyContactRecyclerViewAdapter(
 //            R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
 //        val rand = ThreadLocalRandom.current()
 
+        //TODO: ERROR IMAGE...
+        Log.i("ITEM_ID: ${item.name}", item.imgId.toString())
         holder.imgView.setImageResource(item.imgId)
         holder.contentView.text = item.name
 
@@ -59,6 +62,11 @@ class MyContactRecyclerViewAdapter(
         //set View of an ImageButton - deleting contact
         val button: ImageButton = holder.contactContainer.findViewById(R.id.deleteButton)
         button.setOnClickListener { eventListener.onDeleteButtonClick(position) }
+
+        holder.contactContainer.setOnClickListener{
+            eventListener.onContactClick(position)
+            //return@setOnClickListener true
+        }
 
         holder.contactContainer.setOnLongClickListener{
             eventListener.onContactLongClick(position)

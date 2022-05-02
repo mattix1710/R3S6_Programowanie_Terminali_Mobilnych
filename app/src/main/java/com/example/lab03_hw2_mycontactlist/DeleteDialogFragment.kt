@@ -20,7 +20,6 @@ private const val CONTACT_POS_PARAM = "contact pos"
 class DeleteDialogFragment : DialogFragment() {
     lateinit var mListener: OnDeleteDialogInteractionListener
 
-    // TODO: Rename and change types of parameters
     private var contactNameParam: String? = null
     private var contactPosParam: Int? = null
 
@@ -56,12 +55,12 @@ class DeleteDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setMessage("Delete this entry?" + " $contactNameParam")
+        builder.setMessage("Delete this entry? $contactNameParam")
         builder.setPositiveButton("Confirm", DialogInterface.OnClickListener{ dialogInterface, i ->
-            mListener?.onDialogPositiveClick(contactPosParam)
+            mListener.onDialogPositiveClick(contactPosParam)
         })
         builder.setNegativeButton("Discard", DialogInterface.OnClickListener{ dialogInterface, i ->
-            mListener?.onDialogNegativeClick(contactPosParam)
+            mListener.onDialogNegativeClick(contactPosParam)
         })
         return builder.create()
     }

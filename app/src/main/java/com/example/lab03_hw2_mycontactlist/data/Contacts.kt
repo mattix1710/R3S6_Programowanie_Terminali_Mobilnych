@@ -1,5 +1,6 @@
 package com.example.lab03_hw2_mycontactlist.data
 
+import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log

@@ -1,20 +1,27 @@
 package com.example.lab03_hw2_mycontactlist
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.lab03_hw2_mycontactlist.data.ContactItem
 import com.example.lab03_hw2_mycontactlist.data.Contacts
 import com.example.lab03_hw2_mycontactlist.data.makeImage
 import com.example.lab03_hw2_mycontactlist.databinding.FragmentAddContactBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +32,9 @@ class AddContactFragment : Fragment() {
     val args: AddContactFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentAddContactBinding
+    private val myFormat = "dd/MM/yyyy"
+    private val sdf = SimpleDateFormat(myFormat)
+    private var imgIdAux: Int = 0;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,22 +53,72 @@ class AddContactFragment : Fragment() {
         binding.phoneInput.setText(args.contactToEdit?.phoneNumber)
         /**
          * ?. - null safety operator
-         * Check if imgId is NULL, if yes - draw a new image from 16 possible
-         * Otherwise - display already saved image
+         * ?: - Elvis operator
+         * If the expression to the left of "?:" is not NULL, the Elvis operator returns it,
+         * otherwise it returns the expression to the right;
         */
-        binding.contactImageIn.setImageResource(args.contactToEdit?.imgId.let { makeImage() })
+        imgIdAux = args.contactToEdit?.imgId ?: makeImage()
+        binding.contactImageIn.setImageResource(imgIdAux)
 
         //if image was clicked - randomize new image
-        val imgChange: ImageView = binding.contactImageIn
-        imgChange.setOnClickListener { binding.contactImageIn.setImageResource(makeImage()) }
+        binding.contactImageIn.setOnClickListener { imgIdAux = makeImage()
+            binding.contactImageIn.setImageResource(imgIdAux)
+        }
+
+        Log.i("IMG_ID", binding.contactImageIn.id.toString())
+
+        /**
+         * setting NUMBER INPUT checker
+         */
+
+        binding.phoneInput.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(p0: CharSequence?, start: Int, before: Int, count: Int) {
+                //TODO("Not yet implemented")
+                Log.i("NUM_START", start.toString())
+                Log.i("NUM_BEFORE", before.toString())
+                Log.i("NUM_COUNT", count.toString())
+//                if(start >= 9 )
+//                    if (p0 != null) {
+//                        binding.phoneInput.setText(p0.substring(0, 8))
+//                    }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                //TODO("Not yet implemented")
+                if (p0 != null) {
+                    //if(p0.length > 9)
+                        //binding.phoneInput.setText(p0.substring(0,8))
+                }
+            }
+
+        })
 
 
-        //display different prompt whether the contact is new or already exists
-        val promptText: TextView = binding.root.findViewById(R.id.label)
-        if(args.edit)
-            promptText.text = R.string.enter_contact_details_existing.toString()
-        else
-            promptText.text = R.string.enter_contact_details_new.toString()
+        /**
+         * setting CALENDAR VIEW - for birthday setting purposes
+         */
+        var cal = Calendar.getInstance()
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener{ view, year, month, day ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, month)
+            cal.set(Calendar.DAY_OF_MONTH, day)
+
+            var date: Date = sdf.parse("$day/$month/$year")
+            binding.dateInput.setText(sdf.format(date))
+        }
+
+        binding.dateInput.showSoftInputOnFocus = false
+        binding.dateInput.setOnClickListener{
+            DatePickerDialog(this.requireContext(), dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
 
     }
 
@@ -67,7 +127,12 @@ class AddContactFragment : Fragment() {
         var name: String = binding.nameInput.text.toString()
         var phone: String = binding.phoneInput.text.toString()
         var birthday: String = binding.dateInput.text.toString()
-        var imgId: Int = binding.contactImageIn.id
+        var imgId: Int = imgIdAux
+
+        //It's not an image ID, but ID of an ImageView
+        //binding.contactImageIn.drawable
+
+        Log.i("IMG_SAVE", imgId.toString())
 
         //Handle missing EditText input
         if(name.isEmpty()) name = "Jan Kowalski"
@@ -91,11 +156,15 @@ class AddContactFragment : Fragment() {
         }
 
         //Hide the software keyboard with InputMethodManager
-        val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
+        hideSoftwareKeyboard()
 
         //Use "popBackStack" in order to be able to go back to a given fragment in the back stack
         //We then specify the id of the fragment we want to navigate to...
         findNavController().popBackStack(R.id.contactFragment, false)
+    }
+
+    fun hideSoftwareKeyboard(){
+        val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 }
