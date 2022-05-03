@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val CONTACT_POS_PARAM = "contact position"
 private const val CONTACT_NUMBER_PARAM = "contact number"
+private const val CONTACT_NAME_PARAM = "contact name"
 
 /**
  * A simple [Fragment] subclass.
@@ -23,12 +24,14 @@ class CallDialogFragment : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var contactPosParam: Int? = null
     private var contactNumberParam: String? = null
+    private var contactNameParam: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             contactPosParam = it.getInt(CONTACT_POS_PARAM)
             contactNumberParam = it.getString(CONTACT_NUMBER_PARAM)
+            contactNameParam = it.getString(CONTACT_NAME_PARAM)
         }
     }
 
@@ -39,15 +42,16 @@ class CallDialogFragment : DialogFragment() {
          *
          * @param position Parameter 1.
          * @param number Parameter 2.
+         * @param name Parameter 3.
          * @return A new instance of fragment CallDialogFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(position: Int, number: String, interactionListener: OnCallDialogInteractionListener) =
+        fun newInstance(position: Int, number: String, name: String, interactionListener: OnCallDialogInteractionListener) =
             CallDialogFragment().apply {
                 arguments = Bundle().apply {
                     putInt(CONTACT_POS_PARAM, position)
                     putString(CONTACT_NUMBER_PARAM, number)
+                    putString(CONTACT_NAME_PARAM, name)
                 }
                 mListener = interactionListener
             }
@@ -55,7 +59,7 @@ class CallDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setMessage("Zadzwonić pod numer $contactNumberParam?")
+        builder.setMessage("Zadzwonić pod numer $contactNumberParam? ($contactNameParam)")
         builder.setPositiveButton("Potwierdź", DialogInterface.OnClickListener { dialogInterface, i ->
             mListener.onCallPositiveClick(contactNumberParam)
         })

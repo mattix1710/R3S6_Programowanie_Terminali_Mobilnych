@@ -77,21 +77,12 @@ class AddContactFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, start: Int, before: Int, count: Int) {
-                //TODO("Not yet implemented")
-                Log.i("NUM_START", start.toString())
-                Log.i("NUM_BEFORE", before.toString())
-                Log.i("NUM_COUNT", count.toString())
-//                if(start >= 9 )
-//                    if (p0 != null) {
-//                        binding.phoneInput.setText(p0.substring(0, 8))
-//                    }
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                //TODO("Not yet implemented")
                 if (p0 != null) {
-                    //if(p0.length > 9)
-                        //binding.phoneInput.setText(p0.substring(0,8))
+                    if(p0.length > 9)
+                        binding.phoneInput.setText(p0.substring(0,9))
                 }
             }
 
@@ -101,18 +92,29 @@ class AddContactFragment : Fragment() {
         /**
          * setting CALENDAR VIEW - for birthday setting purposes
          */
-        var cal = Calendar.getInstance()
+        val cal = Calendar.getInstance()
 
         val dateSetListener = DatePickerDialog.OnDateSetListener{ view, year, month, day ->
+
+            //save date to calendar - MONTH is -1 number
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, day)
 
-            var date: Date = sdf.parse("$day/$month/$year")
+            val getDay: Int = cal.get(Calendar.DAY_OF_MONTH)
+            val getMonth: Int = cal.get(Calendar.MONTH)+1               //has to be "+1", because months in Calendar class are iterated from 0 to 11
+            val getYear: Int = cal.get(Calendar.YEAR)
+            Log.i("CAL_D", cal.get(Calendar.DAY_OF_MONTH).toString())
+            Log.i("CAL_M", cal.get(Calendar.MONTH).toString())
+            Log.i("CAL_Y", cal.get(Calendar.YEAR).toString())
+
+
+            var date: Date = sdf.parse("$getDay/$getMonth/$getYear")
             binding.dateInput.setText(sdf.format(date))
         }
 
         binding.dateInput.showSoftInputOnFocus = false
+        //binding.dateInput.onFocusChangeListener.
         binding.dateInput.setOnClickListener{
             DatePickerDialog(this.requireContext(), dateSetListener,
                 cal.get(Calendar.YEAR),
@@ -129,8 +131,9 @@ class AddContactFragment : Fragment() {
         var birthday: String = binding.dateInput.text.toString()
         var imgId: Int = imgIdAux
 
+        //binding.contactImageIn.id
+        //^^^
         //It's not an image ID, but ID of an ImageView
-        //binding.contactImageIn.drawable
 
         Log.i("IMG_SAVE", imgId.toString())
 
@@ -163,7 +166,7 @@ class AddContactFragment : Fragment() {
         findNavController().popBackStack(R.id.contactFragment, false)
     }
 
-    fun hideSoftwareKeyboard(){
+    private fun hideSoftwareKeyboard(){
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }

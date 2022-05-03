@@ -6,11 +6,14 @@
     <string name="birthday_hint_text">Data urodzenia</string>
     <string name="birthday_hint">dd/mm/yyyy</string>
     <string name="phone_hint_text">Telefon</string>
-    <string name="phone_hint">(+48) 123 456 789</string>
+    <string name="phone_hint">123 456 789</string>
     <string name="name_hint_text">Nazwa</string>
     <string name="default_name">Jan Kowalski</string>
-    <string name="default_phone">(+48) 123 456 789</string>
+    <string name="default_phone">123 456 789</string>
     <string name="default_birthday">01/01/1990</string>
     <string name="noContactsMessageStr">Brak kontaków do wyświetlenia</string>
     <string name="add_hint_image">Kliknij na obrazek - losuj nowy</string>
+    <string name="contact_image_desc">contact image</string>
+    <string name="edit_button_desc">edit button</string>
+    <string name="save_button_desc">save button</string>
 </resources>

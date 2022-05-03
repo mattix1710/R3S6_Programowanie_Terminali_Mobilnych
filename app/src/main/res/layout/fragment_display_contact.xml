@@ -10,6 +10,7 @@
 
     <ImageView
         android:id="@+id/displayContactImage"
+        android:contentDescription="@string/contact_image_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:src="@tools:sample/avatars"
@@ -31,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textSize="20sp"
         android:minEms="10"
         android:maxEms="18"
         android:text="@string/default_name"
@@ -44,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textSize="20sp"
         android:minEms="10"
         android:maxEms="18"
         android:text="@string/default_phone"
@@ -57,16 +60,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textSize="20sp"
         android:minEms="10"
         android:maxEms="18"
         android:text="@string/default_birthday"
         app:layout_constraintTop_toBottomOf="@id/displayPhone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/editButton"
+        android:contentDescription="@string/edit_button_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

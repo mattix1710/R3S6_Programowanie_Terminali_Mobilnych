@@ -4,18 +4,19 @@ import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
+import androidx.core.graphics.drawable.toDrawable
 import com.example.lab03_hw2_mycontactlist.R
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
-fun makeImage(): Int {
+fun makeImage(): Int {     //TODO: changed Int to Drawable
     val images = arrayOf<Int>(
         R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
         R.drawable.avatar_7, R.drawable.avatar_8, R.drawable.avatar_9, R.drawable.avatar_10, R.drawable.avatar_11, R.drawable.avatar_12,
         R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
 
     val rand = ThreadLocalRandom.current()
-    return images[rand.nextInt(images.size)]
+    return images[rand.nextInt(images.size)]   //TODO: added .toDrawable
 }
 
 /**
@@ -58,8 +59,8 @@ object Contacts {
     }
 
     private fun makePhoneNumber(position: Int): String {
-        var aux: String = "(+48) "
-        for(i in 0 until position){
+        var aux: String = ""
+        for(i in 0 until 9){
             aux += position.toString()
         }
         return aux
@@ -119,13 +120,13 @@ object Contacts {
 
 }
 
-data class ContactItem(val id: String, val name: String, val birthday: String, val phoneNumber: String, val imgId: Int): Parcelable {
+data class ContactItem(val id: String, val name: String, val birthday: String, val phoneNumber: String, val imgId: Int): Parcelable {  //TODO: changed imgId: Int to Drawable
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readInt()!!
+        parcel.readInt()
     ) {
     }
 

@@ -65,7 +65,7 @@ class ContactFragment : Fragment(), ContactListListener,
      */
 
     private fun showCallDialog(position: Int){
-        val callDialog = CallDialogFragment.newInstance(position, Contacts.ITEMS.get(position).phoneNumber, this)
+        val callDialog = CallDialogFragment.newInstance(position, Contacts.ITEMS.get(position).phoneNumber, Contacts.ITEMS.get(position).name, this)
         callDialog.show(requireActivity().supportFragmentManager, "CallDialog")
     }
 
