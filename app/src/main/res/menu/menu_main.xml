@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.poznanbike.MainActivity">
+
+    <item
+        android:id="@+id/get_all"
+        android:title="@string/show_saved" />
+    <item
+        android:id="@+id/get_with_bikes"
+        android:title="@string/show_saved_with_bikes" />
+    <item
+        android:id="@+id/get_with_racks"
+        android:title="@string/show_saved_with_racks" />
+
+    <item
+        android:id="@+id/clear"
+        android:title="@string/clear_saved_and_list" />
+
+</menu>
