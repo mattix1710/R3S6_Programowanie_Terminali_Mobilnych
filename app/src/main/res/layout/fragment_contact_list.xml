@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:backgroundTint="@color/main_color"
         android:src="@android:drawable/ic_input_add"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"

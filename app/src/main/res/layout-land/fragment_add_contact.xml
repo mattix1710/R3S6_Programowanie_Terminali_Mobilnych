@@ -21,25 +21,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+
     <ImageView
         android:id="@+id/contactImageIn"
-        android:contentDescription="@string/contact_image_desc"
-        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:src="@tools:sample/avatars"
-        app:layout_constraintTop_toBottomOf="@+id/label"
-        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="true"
+        android:contentDescription="@string/contact_image_desc"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/hintImage"/>
-
+        app:layout_constraintStart_toStartOf="@id/landVerticalAdd"
+        app:layout_constraintTop_toBottomOf="@id/imageTextSeparatorEdit"
+        tools:src="@tools:sample/avatars" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/imageTextSeparatorEdit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.18" />
 
 <!--
     <com.google.android.material.textfield.TextInputLayout
@@ -66,53 +66,54 @@
         android:id="@+id/nameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_text"
+        android:hint="@string/default_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:maxEms="18"
+        android:minEms="10"
+        android:padding="@dimen/text_padding"
         android:textAlignment="center"
         android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
-        android:importantForAutofill="no"
-        android:padding="@dimen/text_padding"
-        android:hint="@string/default_name"
-        android:background="@drawable/border_text"
-        app:layout_constraintTop_toTopOf="@id/imageTextSeparatorEdit"
+        app:layout_constraintBottom_toTopOf="@id/phoneInput"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/phoneInput"/>
+        app:layout_constraintTop_toTopOf="@id/imageTextSeparatorEdit" />
+
     <EditText
         android:id="@+id/phoneInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:textAlignment="center"
-        android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
-        android:importantForAutofill="no"
-        android:padding="@dimen/text_padding"
         android:background="@drawable/border_text"
         android:hint="@string/phone_hint"
         android:imeOptions="actionDone"
-        app:layout_constraintTop_toBottomOf="@id/nameInput"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:maxEms="18"
+        android:minEms="10"
+        android:padding="@dimen/text_padding"
+        android:textAlignment="center"
+        android:textSize="@dimen/focus_text_size"
+        app:layout_constraintBottom_toTopOf="@id/dateInput"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/dateInput"/>
+        app:layout_constraintTop_toBottomOf="@id/nameInput" />
 
     <EditText
         android:id="@+id/dateInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:textAlignment="center"
-        android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
-        android:importantForAutofill="no"
-        android:padding="@dimen/text_padding"
         android:background="@drawable/border_text"
         android:hint="@string/birthday_hint"
-        app:layout_constraintBottom_toTopOf="@id/saveButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:maxEms="18"
+        android:minEms="10"
+        android:padding="@dimen/text_padding"
+        android:textAlignment="center"
+        android:textSize="@dimen/focus_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalAdd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneInput" />
 
@@ -171,5 +172,12 @@
         android:layout_marginBottom="5dp"
         app:layout_constraintStart_toStartOf="@id/dateInput"
         app:layout_constraintBottom_toTopOf="@id/dateInput"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landVerticalAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,70 +10,63 @@
 
     <ImageView
         android:id="@+id/displayContactImage"
-        android:contentDescription="@string/contact_image_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:src="@tools:sample/avatars"
         android:layout_marginHorizontal="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/contact_image_desc"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/imageTextSeparatorDisplay"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/imageTextSeparatorDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintStart_toStartOf="@+id/landVerticalDisp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/displayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
         android:background="@drawable/border_text"
+        android:maxEms="18"
+        android:minEms="10"
         android:padding="@dimen/text_padding"
         android:text="@string/default_name"
-        app:layout_constraintTop_toTopOf="@id/imageTextSeparatorDisplay"
+        android:textAlignment="center"
+        android:textSize="@dimen/focus_text_size"
         app:layout_constraintBottom_toTopOf="@id/displayPhone"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalDisp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/displayPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_text"
+        android:maxEms="18"
+        android:minEms="10"
+        android:padding="@dimen/text_padding"
+        android:text="@string/default_phone"
         android:textAlignment="center"
         android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
-        android:padding="@dimen/text_padding"
-        android:background="@drawable/border_text"
-        android:text="@string/default_phone"
-        app:layout_constraintTop_toBottomOf="@id/displayName"
         app:layout_constraintBottom_toTopOf="@id/displayBirthday"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalDisp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/displayName" />
 
     <TextView
         android:id="@+id/displayBirthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_text"
+        android:maxEms="18"
+        android:minEms="10"
+        android:padding="@dimen/text_padding"
+        android:text="@string/default_birthday"
         android:textAlignment="center"
         android:textSize="@dimen/focus_text_size"
-        android:minEms="10"
-        android:maxEms="18"
-        android:padding="@dimen/text_padding"
-        android:background="@drawable/border_text"
-        android:text="@string/default_birthday"
-        app:layout_constraintTop_toBottomOf="@id/displayPhone"
-        app:layout_constraintBottom_toTopOf="@id/editButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/landVerticalDisp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/displayPhone" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/editButton"
@@ -119,5 +112,12 @@
         android:layout_marginBottom="5dp"
         app:layout_constraintStart_toStartOf="@id/displayBirthday"
         app:layout_constraintBottom_toTopOf="@id/displayBirthday"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landVerticalDisp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

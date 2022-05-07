@@ -42,16 +42,7 @@ class MyContactRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
 
-        //randomize choosen avatar - will RANDOMIZE all contact images each time while opening list tab
-
-//        val images = arrayOf<Int>(R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
-//            //or: intArrayOf(...)
-//            R.drawable.avatar_7, R.drawable.avatar_8, R.drawable.avatar_9, R.drawable.avatar_10, R.drawable.avatar_11, R.drawable.avatar_12,
-//            R.drawable.avatar_13, R.drawable.avatar_14, R.drawable.avatar_15, R.drawable.avatar_16)
-//        val rand = ThreadLocalRandom.current()
-
-        //TODO: ERROR IMAGE...
-        Log.i("ITEM_ID: ${item.name}", item.imgId.toString())
+        //Log.i("ITEM_ID: ${item.name}", item.imgId.toString())
         holder.imgView.setImageResource(item.imgId)
         holder.contentView.text = item.name
 
@@ -65,7 +56,6 @@ class MyContactRecyclerViewAdapter(
 
         holder.contactContainer.setOnClickListener{
             eventListener.onContactClick(position)
-            //return@setOnClickListener true
         }
 
         holder.contactContainer.setOnLongClickListener{

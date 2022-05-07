@@ -42,8 +42,6 @@ class DisplayContactFragment : Fragment() {
         binding.displayPhone.text = contact.phoneNumber
         binding.displayContactImage.setImageResource(contact.imgId)
 
-        //Log.i("IMG_DISP", binding.displayContactImage.id.toString())
-
         binding.editButton.setOnClickListener{
             val contactToEdit =
                 DisplayContactFragmentDirections.actionDisplayContactFragmentToAddContactFragment(

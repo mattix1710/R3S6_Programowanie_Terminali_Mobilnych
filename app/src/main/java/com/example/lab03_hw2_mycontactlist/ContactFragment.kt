@@ -1,5 +1,8 @@
 package com.example.lab03_hw2_mycontactlist
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.navigation.fragment.findNavController
@@ -17,6 +21,7 @@ import com.example.lab03_hw2_mycontactlist.data.Contacts
 import com.example.lab03_hw2_mycontactlist.databinding.FragmentContactListBinding
 import com.google.android.material.snackbar.Snackbar
 import org.w3c.dom.Text
+import java.util.jar.Manifest
 
 /**
  * A fragment representing a list of Contacts.
@@ -49,8 +54,6 @@ class ContactFragment : Fragment(), ContactListListener,
     }
 
     override fun onContactLongClick(position: Int) {
-        // TODO: Make a call...
-        // IDEA: zrobić tak samo / podobnie jak Delete (powiadomienie i upewnienie się, czy chce się zadzwonić)
         showCallDialog(position)
     }
 
@@ -70,9 +73,12 @@ class ContactFragment : Fragment(), ContactListListener,
     }
 
     override fun onCallPositiveClick(num: String?) {
-        //TODO("Not yet implemented")
-
         Snackbar.make(requireView(), "Połączenie trwa...", Snackbar.LENGTH_LONG).show()
+
+        //TODO: create Intent CALL
+        val phoneIntent: Intent = Intent(Intent.ACTION_DIAL)
+        phoneIntent.setData(Uri.parse("tel:$num"))
+        startActivity(phoneIntent)
     }
 
     override fun onCallNegativeClick(pos: Int?) {

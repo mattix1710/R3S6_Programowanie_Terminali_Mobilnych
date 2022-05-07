@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="focus_text_size">25sp</dimen>
+    <dimen name="hint_text_size">12sp</dimen>
+    <dimen name="text_padding">2dp</dimen>
 </resources>
