@@ -16,4 +16,8 @@
     <string name="contact_image_desc">contact image</string>
     <string name="edit_button_desc">edit button</string>
     <string name="save_button_desc">save button</string>
+    <string name="call_button_desc">Call button</string>
+    <string name="error_name_message">BŁĄD: Pole nie może być puste!</string>
+    <string name="error_phone_message">BŁĄD: Numer telefonu powinien mieć 9 cyfr!</string>
+    <string name="error_birthday_message">BŁĄD: Należy wybrać datę urodzin!</string>
 </resources>

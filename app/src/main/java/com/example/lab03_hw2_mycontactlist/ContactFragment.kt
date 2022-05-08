@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.view.get
+import androidx.core.view.isEmpty
 import androidx.core.view.size
 import androidx.navigation.fragment.findNavController
 import com.example.lab03_hw2_mycontactlist.data.Contacts
@@ -44,6 +46,9 @@ class ContactFragment : Fragment(), ContactListListener,
             adapter = MyContactRecyclerViewAdapter(Contacts.ITEMS, this@ContactFragment)
         }
 
+        //Log.i("Q in List", binding.list.adapter?.getItemCount().toString())
+        onCheckContactsQuantity()
+
         binding.addButton.setOnClickListener{ addButtonClick() }
 
         return binding.root
@@ -64,7 +69,7 @@ class ContactFragment : Fragment(), ContactListListener,
     }
 
     /**
-     * PROCEEDING A CALL FUNCTIONS...
+     * "PROCEEDING A CALL" FUNCTIONS...
      */
 
     private fun showCallDialog(position: Int){
@@ -75,7 +80,6 @@ class ContactFragment : Fragment(), ContactListListener,
     override fun onCallPositiveClick(num: String?) {
         Snackbar.make(requireView(), "Połączenie trwa...", Snackbar.LENGTH_LONG).show()
 
-        //TODO: create Intent CALL
         val phoneIntent: Intent = Intent(Intent.ACTION_DIAL)
         phoneIntent.setData(Uri.parse("tel:$num"))
         startActivity(phoneIntent)
@@ -106,6 +110,7 @@ class ContactFragment : Fragment(), ContactListListener,
 
     override fun onDialogPositiveClick(pos: Int?) {
         Contacts.ITEMS.removeAt(pos!!)
+        onCheckContactsQuantity()
         Snackbar.make(requireView(), "Task Deleted", Snackbar.LENGTH_LONG)
             .show()
         notifyDataSetChanged()
@@ -120,5 +125,12 @@ class ContactFragment : Fragment(), ContactListListener,
     private fun notifyDataSetChanged(){
         val rvAdapter = binding.list.adapter
         rvAdapter?.notifyDataSetChanged()
+    }
+
+    private fun onCheckContactsQuantity(){
+        if(binding.list.adapter?.getItemCount() == 0)
+            binding.noContactsMessage.visibility = TextView.VISIBLE
+        else
+            binding.noContactsMessage.visibility = TextView.GONE
     }
 }

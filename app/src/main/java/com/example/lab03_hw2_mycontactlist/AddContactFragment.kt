@@ -20,6 +20,7 @@ import com.example.lab03_hw2_mycontactlist.data.ContactItem
 import com.example.lab03_hw2_mycontactlist.data.Contacts
 import com.example.lab03_hw2_mycontactlist.data.makeImage
 import com.example.lab03_hw2_mycontactlist.databinding.FragmentAddContactBinding
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -128,45 +129,64 @@ class AddContactFragment : Fragment() {
     }
 
     private fun saveContact() {
-        //Get the values from data fields on the screen
-        var name: String = binding.nameInput.text.toString()
-        var phone: String = binding.phoneInput.text.toString()
-        var birthday: String = binding.dateInput.text.toString()
-        var imgId: Int = imgIdAux
+        if(binding.nameInput.text.isEmpty() || binding.phoneInput.text.length < 9 || binding.dateInput.text.isEmpty()){
+            if(binding.nameInput.text.isEmpty())
+                binding.errorName?.setVisibility(TextView.VISIBLE)
+            else
+                binding.errorName?.setVisibility(TextView.GONE)
 
-        //binding.contactImageIn.id
-        //^^^
-        //It's not an image ID, but ID of an ImageView
+            if(binding.phoneInput.text.length < 9)
+                binding.errorPhone?.setVisibility(TextView.VISIBLE)
+            else
+                binding.errorPhone?.setVisibility(TextView.GONE)
 
-        Log.i("IMG_SAVE", imgId.toString())
-
-        //Handle missing EditText input
-        if(name.isEmpty()) name = "Jan Kowalski"
-        if(phone.isEmpty()) phone = "+48 123 456 789"
-        if(birthday.isEmpty()) birthday = "01/01/1990"
-
-        //Create a new ContactItem based on input values
-        val contactItem = ContactItem(
-            {name + phone}.hashCode().toString(),
-            name,
-            birthday,
-            phone,
-            imgId
-        )
-
-        if(!args.edit) {
-            //Add the new item to Contacts list
-            Contacts.addContact(contactItem)
-        }else{
-            Contacts.updateContact(args.contactToEdit, contactItem)
+            if(binding.dateInput.text.isEmpty())
+                binding.errorBirthday?.setVisibility(TextView.VISIBLE)
+            else
+                binding.errorBirthday?.setVisibility(TextView.GONE)
         }
+        else {
+            //Get the values from data fields on the screen
+            var name: String = binding.nameInput.text.toString()
+            var phone: String = binding.phoneInput.text.toString()
+            var birthday: String = binding.dateInput.text.toString()
+            var imgId: Int = imgIdAux
 
-        //Hide the software keyboard with InputMethodManager
-        hideSoftwareKeyboard()
+            //binding.contactImageIn.id
+            //^^^
+            //It's not an image ID, but ID of an ImageView
 
-        //Use "popBackStack" in order to be able to go back to a given fragment in the back stack
-        //We then specify the id of the fragment we want to navigate to...
-        findNavController().popBackStack(R.id.contactFragment, false)
+            //if PHONE NUMBER has too little digits (less than 9)
+
+
+            //Handle missing EditText input
+            if (name.isEmpty()) name = "Jan Kowalski"
+            if (phone.isEmpty()) phone = "123456789"
+            if (birthday.isEmpty()) birthday = "01/01/1990"
+
+            //Create a new ContactItem based on input values
+            val contactItem = ContactItem(
+                { name + phone }.hashCode().toString(),
+                name,
+                birthday,
+                phone,
+                imgId
+            )
+
+            if (!args.edit) {
+                //Add the new item to Contacts list
+                Contacts.addContact(contactItem)
+            } else {
+                Contacts.updateContact(args.contactToEdit, contactItem)
+            }
+
+            //Hide the software keyboard with InputMethodManager
+            hideSoftwareKeyboard()
+
+            //Use "popBackStack" in order to be able to go back to a given fragment in the back stack
+            //We then specify the id of the fragment we want to navigate to...
+            findNavController().popBackStack(R.id.contactFragment, false)
+        }
     }
 
     private fun hideSoftwareKeyboard(){

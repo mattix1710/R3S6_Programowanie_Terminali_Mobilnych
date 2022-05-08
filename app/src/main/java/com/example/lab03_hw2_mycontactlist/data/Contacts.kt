@@ -37,7 +37,7 @@ object Contacts {
      */
     val ITEM_MAP: MutableMap<String, ContactItem> = HashMap()
 
-    private val COUNT = 5
+    private val COUNT = 0
 
     fun getCount(): Int {
         return COUNT
