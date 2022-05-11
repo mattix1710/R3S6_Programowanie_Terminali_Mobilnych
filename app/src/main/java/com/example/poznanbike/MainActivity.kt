@@ -32,7 +32,13 @@ class MainActivity : AppCompatActivity() {
             val navHostFragment: NavHostFragment? =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
             if (navController.currentDestination?.id == R.id.listFragment) {
-
+                // If the currently displayed fragment is the ListFragment find the ListFragment in the navHostFragment
+                val listFragment: ListFragment? =
+                    navHostFragment?.childFragmentManager?.primaryNavigationFragment as ListFragment?
+                // Clear the list if listFragment exists
+                listFragment?.clearList()
+                // Populate the list with new data from Internet
+                listFragment?.populateListFromInternet()
             } else if (navController.currentDestination?.id == R.id.detailFragment) {
 
             }

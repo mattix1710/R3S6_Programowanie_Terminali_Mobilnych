@@ -3,7 +3,6 @@ package com.example.poznanbike.bikestations
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.poznanbike.Geometry
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

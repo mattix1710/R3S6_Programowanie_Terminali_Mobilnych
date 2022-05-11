@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.poznanbike.bikestations.BikeStation
+import com.example.poznanbike.database.BikeStationDatabase
 import com.example.poznanbike.databinding.FragmentDetailBinding
 
 
@@ -57,7 +58,11 @@ class DetailFragment : Fragment() {
             "Lat:" , latitude, "Lng:", longitude)
     }
 
-
+    fun saveToDatabase(){
+        // Get a hold to a BikeStationDatabase DAO
+        val bikeStationDAO =
+            BikeStationDatabase.getInstance(requireContext()).bikeStationDatabaseDao
+    }
 
 
 }
