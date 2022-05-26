@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">lab5</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="login_fragment_label">Login</string>
+    <string name="sensor_fragment_label">Sensor</string>
+    <string name="database_fragment_label">Database</string>
+
+    <string name="sensor_type">Sensor type</string>
+    <string name="sensor_field_text">Sensor value: %f [%s]\nSensor timestamp: %d [ns]\n</string>
+    <string name="measurements_field_text">Sensor avg. value: %f [%s] # samples: %d</string>
+    <string name="sensor_not_running">Sensor not running</string>
+    <string name="no_data">No data</string>
+    <string-array name="sensor_types">
+        <item>Light sensor</item>
+        <item>Proximity sensor</item>
+        <item>Temperature sensor</item>
+    </string-array>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="invalid_username">Invalid user name</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="password_mismatch">Password not the same</string>
+    <string name="login_str">Login</string>
+    <string name="register_str">Register</string>
+    <string name="save_db">Save to DB</string>
+    <string name="show_db">Show database</string>
+    <string name="logout">Logout</string>
+
+</resources>

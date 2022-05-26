@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginRegisterFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:hint="E-mail"
+        android:textColorHint="@color/base_color"
+        android:visibility="visible"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/base_color_light"
+        app:boxStrokeWidth="1dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/base_color"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:startIconDrawable="@drawable/ic_person"
+        app:startIconTint="@color/base_color"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"
+            tools:text="email@domain.com" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Password"
+        android:textColorHint="@color/base_color"
+        android:visibility="visible"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/base_color_light"
+        app:boxStrokeWidth="1dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/base_color"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/login_password_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/base_color"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            tools:text="myPassword" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password_confirm"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Password (confirm)"
+        android:textColorHint="@color/base_color"
+        android:visibility="gone"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/base_color_light"
+        app:boxStrokeWidth="1dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/base_color"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/base_color"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            tools:text="myPassword" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_register_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_str"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_register_toggle" />
+
+    <Button
+        android:id="@+id/login_register_toggle"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/register_str"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/base_color"
+        android:textSize="10sp"
+        app:iconTint="@color/base_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

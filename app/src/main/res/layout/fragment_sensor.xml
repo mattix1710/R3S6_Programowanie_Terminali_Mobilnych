@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SensorFragment">
+
+    <TextView
+        android:id="@+id/sensor_field_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/sensor_field_text"
+        app:layout_constraintBottom_toTopOf="@+id/measurementsTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sensor_name_text" />
+
+    <TextView
+        android:id="@+id/sensor_name_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/sensor_not_running"
+        app:layout_constraintBottom_toTopOf="@+id/sensor_field_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sensor_select_spinner" />
+
+    <Button
+        android:id="@+id/show_db_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_db"
+
+        app:layout_constraintBottom_toBottomOf="@+id/save_db_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/save_db_button" />
+
+    <Button
+        android:id="@+id/save_db_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/save_db"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/show_db_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/sensor_select_spinner"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/sensor_types"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sensor_type_label" />
+
+    <ToggleButton
+        android:id="@+id/sensorToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/show_db_button"
+        app:layout_constraintEnd_toEndOf="@+id/show_db_button"
+        app:layout_constraintStart_toStartOf="@+id/save_db_button" />
+
+    <TextView
+        android:id="@+id/sensor_type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/sensor_type"
+        app:layout_constraintStart_toStartOf="@+id/sensor_select_spinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/measurementsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/measurements_field_text"
+        app:layout_constraintBottom_toTopOf="@+id/sensorToggleButton"
+        app:layout_constraintEnd_toEndOf="@+id/sensor_field_text"
+        app:layout_constraintStart_toStartOf="@+id/sensor_field_text" />
+</androidx.constraintlayout.widget.ConstraintLayout>
