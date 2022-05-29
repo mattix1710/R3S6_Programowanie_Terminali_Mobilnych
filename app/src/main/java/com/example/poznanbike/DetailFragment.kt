@@ -9,7 +9,11 @@ import androidx.navigation.fragment.navArgs
 import com.example.poznanbike.bikestations.BikeStation
 import com.example.poznanbike.database.BikeStationDatabase
 import com.example.poznanbike.databinding.FragmentDetailBinding
-
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class DetailFragment : Fragment() {
@@ -62,6 +66,30 @@ class DetailFragment : Fragment() {
         // Get a hold to a BikeStationDatabase DAO
         val bikeStationDAO =
             BikeStationDatabase.getInstance(requireContext()).bikeStationDatabaseDao
+
+        // In the background task created with coroutine (GlobalScope and IO dispatcher) run the following code
+        GlobalScope.launch {
+            withContext(Dispatchers.IO){
+                // Check whether a bike station with a given label already exists in the database
+                val byLabel = bikeStationDAO.getByLabel(args.bikeStation.properties.label)
+                val op = if (byLabel.isEmpty()){
+                    // If the bike station isn't in the database insert it and set the message (op variable)
+                    // to "Saved"
+                    bikeStationDAO.insert(Helpers.createBikeStationDB(args.bikeStation))
+                    "Saved"
+                } else{
+                    // if the bike station is already in the database, update it and set the message
+                    // to "Updated"
+                    "Updated"
+                }
+                // Display the status of the operation to the user with a snackbar
+                Snackbar.make(
+                    binding.root,
+                    "$op ${args.bikeStation.properties.label}",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
 

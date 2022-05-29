@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "saved_bike_stations")
-data class BikeStationDB {
+data class BikeStationDB (
     @ColumnInfo
     val bikes: Int,
 
@@ -19,11 +19,11 @@ data class BikeStationDB {
     val updated: String,
 
     @ColumnInfo
-    val longtitude: Double,
+    val longitude: Double,
 
     @ColumnInfo
     val latitude: Double,
 
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L
-}
+)
