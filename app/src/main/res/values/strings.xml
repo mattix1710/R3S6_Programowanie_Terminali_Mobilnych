@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lab5</string>
+    <string name="app_name">LabFirebase</string>
     <!-- Strings used for fragments for navigation -->
     <string name="login_fragment_label">Login</string>
     <string name="sensor_fragment_label">Sensor</string>
