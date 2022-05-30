@@ -18,7 +18,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Lab5.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.LabFirebase.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Lab5.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.LabFirebase.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
