@@ -1,9 +1,11 @@
 package com.example.mapsapp
 
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -15,6 +17,9 @@ import com.example.mapsapp.databinding.ActivityMapsBinding
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
+import android.Manifest
+import android.location.Location
+import com.google.android.material.snackbar.Snackbar
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
     GoogleMap.OnMapLoadedCallback,
@@ -43,6 +48,82 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         // Create an instance of FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        if(ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED){
+            // here to request the missing permissions, and then overriding
+            // public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                MY_PERMISSION_REQUEST_ACCESS_FINE_LOCATION
+            )
+            return
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // Check if the request code matches the MY_PERMISSION_REQUEST_ACCESS_FINE_LOCATION variable
+        if(requestCode == MY_PERMISSION_REQUEST_ACCESS_FINE_LOCATION){
+            // check whether there exists a location ACCESS_FINE_LOCATION permission in the permissions list
+            val indexOf = permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION)
+            if(indexOf != -1 && grantResults[indexOf] != PackageManager.PERMISSION_GRANTED){
+                // permission was denied - notify the user that it is required
+                Snackbar.make(
+                    binding.root,
+                    "Permission is required to continue",
+                    Snackbar.LENGTH_LONG
+                )
+                    .setAction("RETRY"){
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                            MY_PERMISSION_REQUEST_ACCESS_FINE_LOCATION
+                        )
+                    }.show()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i(localClassName, "onResume")
+        createLocationRequest()
+        createLocationCallback()
+        if(ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED) {
+            // if location permission is not granted don't start location updates
+            return
+        }
+        startLocationUpdates()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun showLastLocationMarker(){
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                // if the location isn't null add a marker to map. Marker parameters are defined
+                // with the help of MarkerOptions
+                mMap.addMarker(with(MarkerOptions()){
+                    // set the position of the marker - default marker with azure hue
+                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    // set a title for the marker
+                    title(getString(R.string.last_known_loc_msg))
+                })
+            }
+        }
     }
 
     /**
@@ -68,7 +149,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onMapLoaded() {
-        TODO("Not yet implemented")
+        Log.i(localClassName, "Map loaded")
+        showLastLocationMarker()
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
@@ -77,6 +159,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onMapLongClick(p0: LatLng) {
         TODO("Not yet implemented")
+    }
+
+    override fun onPause() {
+        Log.i(localClassName, "onPause")
+        super.onPause()
+        stopLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
     private fun createLocationRequest(){
