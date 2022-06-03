@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "saved_bike_stations")
-data class BikeStationDB (
+class BikeStationDB (
     @ColumnInfo
     val bikes: Int,
 

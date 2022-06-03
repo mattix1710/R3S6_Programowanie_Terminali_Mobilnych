@@ -43,6 +43,9 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
 
         binding.fab.setOnClickListener {
             // placeholder for the FAB click event implementation
+            appBarConfiguration = AppBarConfiguration(navController.graph)          //TODO: Maciek tu wrzucił
+            setupActionBarWithNavController(navController, appBarConfiguration)
+
             val navHostFragment: NavHostFragment? =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
             if (navController.currentDestination?.id == R.id.listFragment) {
@@ -61,9 +64,6 @@ class MainActivity : AppCompatActivity(), Animator.AnimatorListener {
                 detailFragment?.saveToDatabase()
             }
         }
-
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onResume() {

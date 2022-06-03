@@ -80,6 +80,7 @@ class DetailFragment : Fragment() {
                 } else{
                     // if the bike station is already in the database, update it and set the message
                     // to "Updated"
+                    bikeStationDAO.update(Helpers.createBikeStationDB(args.bikeStation))
                     "Updated"
                 }
                 // Display the status of the operation to the user with a snackbar

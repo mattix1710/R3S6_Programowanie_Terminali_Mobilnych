@@ -1,7 +1,6 @@
 package com.example.poznanbike
 
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.example.poznanbike.databinding.FragmentListBinding
 import com.example.poznanbike.network.BikeStationApi
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -62,7 +60,7 @@ class ListFragment : Fragment() {
                     val actionListFragmentToDetailFragment =
                         ListFragmentDirections.actionListFragmentToDetailFragment(
                             bikeStation
-                        ) // safe args are used to pass data between fragemnts
+                        ) // safe args are used to pass data between fragments
                     findNavController().navigate(actionListFragmentToDetailFragment)
                 }
 
@@ -112,7 +110,7 @@ class ListFragment : Fragment() {
                 withContext(Dispatchers.IO){
                     // Access the retrofit service with the BikeStationAPI object. The getBikeStations
                     // method from the BikeStationAPIService interface is used to fetch the data
-                    BikeStationApi.retrofitService.getBikeStations().bikeStations
+                    BikeStationApi.retrofitService.getBikeStations().items
                 }
             }.await()
         } catch (e: Exception){
@@ -133,7 +131,7 @@ class ListFragment : Fragment() {
                     BikeStationApi.retrofitService.getBikeStations(
                         "pub_transport",
                         "stacje_rowerowe"
-                    ).bikeStations
+                    ).items
                 }
             }.await()
         } catch (e: Exception){
@@ -157,7 +155,7 @@ class ListFragment : Fragment() {
             withContext(Dispatchers.Main){
                 Snackbar.make(
                     binding.root,
-                    "${bikeStations?.size} bike stations",
+                    "${bikeStations?.size}" + " bike stations",
                     Snackbar.LENGTH_LONG
                 ).show()
             }

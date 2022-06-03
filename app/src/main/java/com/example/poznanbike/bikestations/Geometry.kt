@@ -14,7 +14,7 @@ data class Geometry(
    val type: String
 ) : Parcelable {
    constructor(parcel: Parcel) : this(
-      parcel.createDoubleList(),
+      parcel.createDoubleList(), //TODO: Maciek nie ma tego
       parcel.readString()!!
    ) {
    }
